@@ -48,7 +48,12 @@ String fromAddress = String.format(&quot;%s@%s&quot;, new Object[] {&quot;${from
 String toAddress = String.format(&quot;%s@%s&quot;, new Object[] {&quot;${toUserName}&quot;, &quot;${domain}&quot;});
 
 log.info(&quot;Sending message from {} to {}&quot;, fromAddress, toAddress);
-sendOperation.sendMessage(fromAddress, toAddress);
+try {
+  sendOperation.sendMessage(fromAddress, toAddress);
+} catch(Exception ex) {
+	log.error(&quot;An error has been occured&quot;, ex);
+	throw ex;
+}
 log.info(&quot;Message sent to {} from {} successfully.&quot;, toAddress, fromAddress);
 
 </stringProp>
